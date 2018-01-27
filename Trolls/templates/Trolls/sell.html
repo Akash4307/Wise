@@ -1,0 +1,134 @@
+<html>
+
+<head>
+    <title>Sell</title>
+
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1896187067075958',
+                cookie: true,
+                xfbml: true,
+                version: 'v2.11'
+            });
+
+
+
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+
+
+
+        };
+
+
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        function statusChangeCallback(response) {
+
+            if (response.status === 'connected') {
+
+                testAPI();
+            } else {
+                document.location.href = '/'
+                          }
+        }
+
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
+
+        function testAPI() {
+
+            FB.api('/me?fields=id,name,location,email,birthday,picture,friendlists,link', function (response) {
+                if (response && !response.error); {
+
+
+
+                }
+            });
+
+        }
+
+
+
+
+        function logout() {
+            FB.logout(function (response) {
+                document.location.href = '/'
+
+              
+            });
+
+        }
+
+
+
+
+
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=784826381719895';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+
+
+    <header>
+        <section class="container row1">
+            <div class="btn-group d-flex" role="group">
+                <a href="{% url 'buy'%}" class="btn btn-dark w-100">Buy</a>
+                <a href="" class="btn btn-dark w-100">Sell</a>
+                <a id="logout" href="#" class="btn btn-danger btn-block" role="button" onclick="logout()">logout</a>
+
+
+            </div>
+
+
+        </section>
+    </header>
+
+
+    <form class="container row1" method="POST" action="" enctype="multipart/form-data">{% csrf_token %} {{form.as_p}}
+
+
+
+        <input type="submit" id="submit" class="btn btn-success" />
+
+
+
+    </form>
+
+</body>
+
+</html>

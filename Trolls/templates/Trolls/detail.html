@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wiset</title>
+
+
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+        <header>
+                <section class="container row1">
+                    <div class="btn-group d-flex" role="group">
+                            <a href="{% url 'buy'%}" class="btn btn-dark w-100">Buy</a>
+                            <a href="{% url 'sell'%}" class="btn btn-dark w-100">Sell</a>
+                        
+        
+                    </div>                  
+                        <div class="container">
+                            <form id="search" method="GET" action="/detail/">
+                                <div class="row1">
+                                    <div class="input-group">
+                                        <input type="text" name="q" class="form-control" placeholder="Search Here Your Book">
+                                        <span class="input-group-btn">
+                                                <input type="submit"  class="btn btn-dark" value="Go" />
+                                
+                                        </span>
+                                    </div>
+                                </div>                    
+                      </div>
+                   
+                      
+                </section>
+            </header>
+
+    
+{% for data in object_list %}
+
+<div class="container row1">
+
+
+
+
+
+
+    <ul> 
+                
+            
+        <ul class = "list-group">
+        
+        <a class="list-group-item justify-content-between" href="{% url 'bookdetail' data.id%}">{{ data.UserBookName}}<span class="badge badge-default badge-pill">${{ data.UserBookPrice}}</span>{{ data.created }}</a>
+</ul>
+
+</div>
+
+
+{% endfor %}
+
+</body>
+</html>
+
+
