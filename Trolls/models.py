@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 class UserInfo(models.Model):
@@ -17,7 +17,7 @@ class UserInfo(models.Model):
         return reverse ('sell')
 
     def __str__(self):
-        return self.UserLocation
+        return self.UserBookName
 
     
     
