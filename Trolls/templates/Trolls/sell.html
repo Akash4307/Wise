@@ -1,11 +1,17 @@
 <html>
 
 <head>
-    <title>Wise</title>
+    <title>Geek Point</title>
 
-    {% load staticfiles %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous"> {% load staticfiles %}
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" type="text/css" />
     <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -53,7 +59,7 @@
                 testAPI();
             } else {
                 document.location.href = '/login'
-                          }
+            }
         }
 
         function checkLoginState() {
@@ -81,7 +87,7 @@
             FB.logout(function (response) {
                 document.location.href = '/'
 
-              
+
             });
 
         }
@@ -100,35 +106,102 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+    <div class="container" >
 
 
 
+            <header>
 
-    <header>
-        <section class="container row1">
-            <div class="btn-group d-flex" role="group">
-                <a href="{% url 'buy'%}" class="btn btn-dark w-100">Buy</a>
-                <a href="" class="btn btn-dark w-100">Sell</a>
-                <a id="logout" href="#" class="btn btn-danger btn-block" role="button" onclick="logout()">logout</a>
+                    <div class="row" >
+                            <div class="col" >
+                                <div class="logo ">
+                                    <div class="d-flex justify-content-center">
+                            <img  src="{% static 'logo.jpg'%}" height="40">
+                            </div>
+                            </div>
+                            </div>
+                </div>
+    
+                <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                      <ul class="navbar-nav">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="{% url 'buy'%}">Books</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'ebook'%}">Ebooks</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="{% url 'sell'%}" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sell
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'sell'%}">Book</a>
+                            <a class="dropdown-item" href="{% url 'sellebook'%}">Ebook</a>
+                          </div>
+                        </li>
+                        <li>
+                                <a class="nav-link" href="#" onclick="logout()">LogOut</a>
+                            </li>
+                      </ul>
+                    </div>
+                  </nav>
+    
+                  <div class="searchbar">
+                        <form id="search" method="GET" action="/detail/">
+                       
+                    </div>
+                    <div class="row">
+                            <div class="col-md-12">
+                                <div id="custom-search-input">
+                                    <div class="input-group col-md-12">
+                                        <input type="text" name="q" class="form-control input-lg" placeholder="search" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+    
+                    
+            </header>
 
 
-            </div>
+    <br><h1 style="font-weight: bold; ">Fill The Correct Information Below</h1><br>
 
 
-        </section>
-    </header>
+    <form  method="POST" action="" enctype="multipart/form-data">{% csrf_token %} {{form.UserBookName}}
+        <br>
+        <br> {{form.Discription}}
+        <br>
+        <br> {{form.UserBookPrice}}
+        <br>
+
+        <br> {{form.UserName}}
+        <br>
+        <br> {{form.UserLocation}}
+        <br>
+        <br> {{form.UserPhoneNumber}}
+        <br>
+        <br> {{form.UserEmail}}
+        <br>
+        <br>
+        <p>Upload Book Image</p> {{form.UserBookLogo}}
+        <br>
 
 
-    <form class="container row1" method="POST" action="" enctype="multipart/form-data">{% csrf_token %} {{form.as_p}}
 
-
-
-        <input type="submit" id="submit" class="btn btn-success" />
+        <br>
+        <input type="submit"  class="btn btn-success" />
 
 
 
     </form>
-
+</div>
 </body>
 
 </html>

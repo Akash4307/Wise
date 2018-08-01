@@ -12,45 +12,9 @@ from .forms import UserForm
 
 class Facebook(generic.ListView):
     template_name = 'Trolls/facebook.html'
+    model = UserInfo
 
 
-
-    def get_queryset(request):
-        return UserInfo.objects.filter(UserLocation__startswith = 'b')
-
-
-
-    
-
-
-    
-def createuser(request):
-    
-    print("okk")
-    if request.method == 'POST':
-        print("okk")
-        UserLocation = request.POST['UserLocation']
-        UserName = request.POST['UserName']
-        UserEmail = request.POST['UserEmail']
-        UserBookName = request.POST['UserBookName']
-        UserPhoneNumber = request.POST['UserPhoneNumber']
-        UserBookPrice = request.POST['UserBookPrice']
-        UserBookLogo = request.POST['UserBookLogo']
-        print("okk")
-
-        UserInfo.objects.create(
-
-            UserLocation = UserLocation,
-            UserName = UserName,
-            UserEmail = UserEmail,
-            UserBookName = UserBookName,
-            UserPhoneNumber = UserPhoneNumber,
-            UserBookPrice = UserBookPrice,
-            UserBookLogo = UserBookLogo
-
-        )
-
-        return HttpResponse('')
 
 
 def DetailView(request):
@@ -79,6 +43,7 @@ def sell(request):
     }
         return render (request, 'Trolls/sell.html', context)
 
+
 class buy(generic.ListView):
     template_name = 'Trolls/buy.html'
 
@@ -99,3 +64,6 @@ def UserCreate(request):
 
     }
     return render (request, 'Trolls/user_form.html', context)
+
+
+
