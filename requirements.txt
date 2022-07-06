@@ -14,7 +14,7 @@ cssselect==1.0.1
 defer==1.0.6
 Django==1.11.7
 Flask==0.11.1
-html5lib==0.999
+html5lib==0.999999999
 hyperlink==17.3.1
 idna==2.6
 imagebot==1.2.1
